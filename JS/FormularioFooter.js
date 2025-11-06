@@ -6,17 +6,14 @@ if (formFooter) {
 
         const data = new FormData(formFooter);
 
-        fetch(formFooter.action, {
-            method: formFooter.method,
+        fetch("https://formsubmit.co/ajax/clubdeportivojur@gmail.com", {
+            method: "POST",
             body: data
         })
-        .then(response => {
-            if (response.ok) {
-                alert("✅ Suscripción enviada correctamente. ¡Gracias por unirte!");
-                window.location.href = "index.html";
-            } else {
-                alert("⚠️ Hubo un problema al enviar el formulario. Intenta nuevamente.");
-            }
+        .then(response => response.json())
+        .then(data => {
+            alert("✅ Suscripción enviada correctamente. ¡Gracias por unirte!");
+            formFooter.reset();
         })
         .catch(error => {
             alert("❌ Error al enviar la suscripción, intenta nuevamente.");
