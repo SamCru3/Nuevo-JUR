@@ -11,11 +11,13 @@
     z-index: 2000;
     backdrop-filter: blur(6px);
     font-family: 'Poppins', sans-serif;
+    pointer-events: none;
 }
 
 .Formulario-Compra.active {
     opacity: 1;
     visibility: visible;
+    pointer-events: all;
 }
 
 .Formulario-Compra .DivCompra {
@@ -116,4 +118,18 @@
 @keyframes zoomIn {
     from { transform: scale(0.8); opacity: 0; }
     to { transform: scale(1); opacity: 1; }
+}
+
+@media (max-width: 768px) {
+    .Formulario-Compra {
+        align-items: flex-start;
+        padding-top: 30px;
+        overflow-y: auto;
+    }
+
+    .Formulario-Compra .DivCompra {
+        width: 95%;
+        margin: 0 auto;
+        max-width: 360px;
+    }
 }
