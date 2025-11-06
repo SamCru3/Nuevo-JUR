@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Entrenamientos</title>
+        <link rel="stylesheet" href="CSS/DetalleCarrito.css">
+        <link rel="stylesheet" href="CSS/Notificacion.css">
+        <link rel="stylesheet" href="CSS/General.css">
+        <link rel="stylesheet" href="CSS/Carrito.css">
+        <link rel="stylesheet" href="CSS/Catalogo.css">
+        <link rel="stylesheet" href="CSS/Comprar.css">
+        <link rel="stylesheet" href="CSS/Sugerencias.css">
+        <link rel="icon" href="Img/Logo.png" type="image/x-icon">
+    </head>
+    <body>
+
+        <div class="NotificacionCompra" id="NotificacionCompra">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <p>¡Productro añadido Exitosamente!</p>
+        </div>
+    
+        <header>
+            <div class="overlay-extremos"></div>
+            <a href=#><img src="Img/Logo.png"></a>
+                        
+            <nav>
+                <div class="linea-separadora1"></div>
+                <a href="index.html">Inicio</a>
+                <div class="linea-separadora1"></div>
+                <a href="Catalogo.html">Tienda</a>
+                <div class="linea-separadora1"></div>
+                <a href="Entrenamientos.html">Entrenamientos</a>
+                <div class="linea-separadora1"></div>
+                <a href="Nosotros.html">Nosotros</a>
+                <div class="linea-separadora1"></div>
+                <a href="Contacto.html">Contacto</a>
+                <div class="linea-separadora1"></div>
+            </nav>
+            
+            <div class="IconoCarrito" onclick="abrirCarrito()">
+                <div class="circulo">
+                    <i class="bi bi-cart3"></i>
+                    <span class="badge" id="badge">0</span>
+                </div>
+                <p>carrito $0  ▼</p>
+                <div class="Carrito" id="Carrito">
+                </div>
+            </div>
+            
+            <div class="snowflakes">
+                <div class="snowflake">❅</div>
+                <div class="snowflake">❆</div>
+                <div class="snowflake">❅</div>
+                <div class="snowflake">❆</div>
+                <div class="snowflake">❅</div>
+                <div class="snowflake">❆</div>
+            </div>
+            
+        </header>
+
+        <main>
+
+            <section id="ProductoDetalle" class="ProductoDetalle oculto">
+            </section>
+
+            <section class="Catalogo">
+
+                <div class="EncabezadoCatalogo">
+
+                    <h2>CATÁLOGO COMPLETO</h2>
+                    <div class="barra-busqueda">
+                        <input type="text" id="inputBuscar" placeholder="Buscar productos...">
+                        <button><i class="bi bi-search"></i></button>
+                    </div>
+
+                </div>
+
+                <div class="Categorias">
+                    <button class="categoria Futbol active" onclick="CambiarCategoria(this, 'Futbol')">Fútbol</button>
+                    <button class="categoria Baloncesto" onclick="CambiarCategoria(this, 'Baloncesto')">Baloncesto</button>
+                    <button class="categoria Natacion" onclick="CambiarCategoria(this, 'Natacion')">Natación</button>
+                    <button class="categoria Tenis" onclick="CambiarCategoria(this, 'Tenis')">Tenis</button>
+                    <button class="categoria Voleibol" onclick="CambiarCategoria(this, 'Voleibol')">Voleibol</button>
+                    <button class="categoria CargueYTransporte" onclick="CambiarCategoria(this, 'CargueYTransporte')">Cargue y transporte</button>
+                    <button class="categoria Camisetas-deportivas" onclick="CambiarCategoria(this, 'Camisetas-deportivas')">Ropa Deportiva</button>
+                    <button class="categoria Gimnasio" onclick="CambiarCategoria(this, 'Gimnasio')">Gimnasio</button>
+                </div>
+
+                <div class="Contenedor-Catalogo" id="productos">
+                </div>
+            </section>
+
+
+        </main>
+
+        <footer id="footer">
+            <div class="footer-container">
+
+                <div class="footer-logo">
+                    <img src="Img/Logo.png" alt="Logo Club Deportivo">
+                    <p>Únete al Club Deportivo JUR y vive la pasión por el deporte. Entrena, juega y crece con nosotros.</p>
+                </div>
+
+                <div class="footer-links">
+                    <h3>Enlaces</h3>
+                    <ul>
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="Catalogo.html">Tienda</a></li>
+                        <li><a href="Entrenamientos.html">Entrenamientos</a></li>
+                        <li><a href="Nosotros.html">Nosotros</a></li>
+                        <li><a href="Contacto.html">Contacto</a></li>
+                        <li><a onclick="window.open('Img/Pagina.jpeg', '_blank')" style="cursor: pointer;">Codigo QR</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-redes">
+                    <h3>Síguenos</h3>
+                    <div class="redes-iconos">
+                        <a href="https://wa.me/573154225816"><i class="bi bi-whatsapp"></i></a>
+                        <a href="https://www.instagram.com/Jur_Jovenes"><i class="bi bi-instagram"></i></a>
+                        <a href="https://www.tiktok.com/@jur_jovenes"><i class="bi bi-tiktok"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-cta">
+                    <h3>Suscríbete</h3>
+                    <p>Recibe noticias, entrenamientos y ofertas exclusivas directamente en tu correo.</p>
+                    <form class="Formulario-Footer" action="https://formsubmit.co/clubdeportivojur@gmail.com" method="POST">
+                        <input type="email" name="email" placeholder="Tu correo electrónico" required>
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="_subject" value="Nuevo suscriptor al Club Deportivo Jur">
+                        <input type="hidden" name="message" value="Nuevo suscriptor al Club Deportivo Jur.">
+                        <input type="hidden" name="_next" value="index.html">
+                        <button type="submit">Suscribirse</button>
+                    </form>
+                </div>
+
+            </div>
+
+            <div class="footer-derechos">
+                <p>&copy; 2025 Club Deportivo JUR. Todos los derechos reservados.</p>
+            </div>
+        </footer>
+
+        <script src="JS/BaseDatos.js"></script>
+        <script src="JS/Carrito.js"></script>
+        <script src="JS/CrearProductos.js"></script>
+        <script src="JS/Sugerencias.js"></script>
+        <script src="JS/Categoria.js"></script>
+        <script src="JS/Detalle.js"></script>
+        <script src="JS/FormularioFooter.js"></script>
+        <script src="JS/Comprar.js"></script>
+
+    </body>
+</html>
