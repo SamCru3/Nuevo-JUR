@@ -1,4 +1,3 @@
-
 document.addEventListener("DOMContentLoaded", () => {
     const Comprita = document.createElement("div");
     Comprita.classList.add("Formulario-Compra");
@@ -35,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
             if (carrito.length > 0) {
                 const listaProductos = carrito
-                    .map(p => `${p.nombre} (x${p.cantidad}) -   ${p.precio}`).join("\n");
+                    .map(p => `${p.nombre} (x${p.cantidad}) - ${p.precio}`).join("\n");
                 Comprita.dataset.productos = listaProductos;
             } else {
                 Comprita.dataset.productos = "Carrito vacío";
@@ -48,48 +47,45 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     const formCompra = document.getElementById("formCompra");
-formCompra.addEventListener("submit", async (e) => {
-    e.preventDefault();
+    formCompra.addEventListener("submit", async (e) => {
+        e.preventDefault();
 
-    const nombre = document.getElementById("nombre").value.trim();
-    const correo = document.getElementById("correo").value.trim();
-    const direccion = document.getElementById("direccion").value.trim();
-    const productos = Comprita.dataset.productos || "Sin productos";
+        const nombre = document.getElementById("nombre").value.trim();
+        const correo = document.getElementById("correo").value.trim();
+        const direccion = document.getElementById("direccion").value.trim();
+        const productos = Comprita.dataset.productos || "Sin productos";
 
-    if (!nombre || !correo || !direccion) {
-        alert("Por favor completa todos los campos.");
-        return;
-    }
+        if (!nombre || !correo || !direccion) {
+            alert("Por favor completa todos los campos.");
+            return;
+        }
 
-    const data = new FormData();
-    data.append("Nombre", nombre);
-    data.append("Correo", correo);
-    data.append("Dirección", direccion);
-    data.append("Productos", productos);
-    data.append("_subject", "🛒 Nueva compra desde el sitio web");
-    data.append("_captcha", "false");
-    data.append("_template", "box");
-    data.append("_next", "https://tusitio.github.io/index.html");
+        const data = new FormData();
+        data.append("Nombre", nombre);
+        data.append("Correo", correo);
+        data.append("Dirección", direccion);
+        data.append("Productos", productos);
+        data.append("_subject", "🛒 Nueva compra desde el sitio web");
+        data.append("_captcha", "false");
+        data.append("_template", "box");
 
-    try {
-        const response = await fetch("https://formsubmit.co/ajax/clubdeportivojur@gmail.com", {
-            method: "POST",
-            body: data
-        });
+        try {
+            const response = await fetch("https://formsubmit.co/ajax/clubdeportivojur@gmail.com", {
+                method: "POST",
+                body: data
+            });
 
-        if (!response.ok) throw new Error("Error al enviar");
+            if (!response.ok) throw new Error("Error al enviar");
 
-        alert(`✅ ¡Gracias por tu compra, ${nombre}! 🛍️`);
-        localStorage.removeItem("carrito");
-        Comprita.classList.remove("active");
+            alert(`✅ ¡Gracias por tu compra, ${nombre}! 🛍️`);
+            localStorage.removeItem("carrito");
+            Comprita.classList.remove("active");
 
-        // Recarga o redirige si quieres
-        window.location.href = "index.html";
+            window.location.href = "index.html";
 
-    } catch (error) {
-        console.error("❌ Error al enviar la compra:", error);
-        alert("Hubo un problema al enviar la compra. Intenta nuevamente.");
-    }
+        } catch (error) {
+            console.error("❌ Error al enviar la compra:", error);
+            alert("Hubo un problema al enviar la compra. Intenta nuevamente.");
+        }
+    });
 });
-
-
