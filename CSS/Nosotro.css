@@ -1,0 +1,608 @@
+body {
+    font-family: 'Lato', sans-serif;
+}
+
+/* #region Nosotros Banner */
+.Overlay-Nosotros {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+}
+.Overlay-Nosotros.active {
+    visibility: visible;
+    opacity: 1;
+}
+.Nosotros-Banner {
+    position: relative;
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    background: url("../Img/Nosotros/Banner1.1.png") center/cover no-repeat;
+    align-items: center;
+    text-align: center;
+    color: #E0E0E0;
+}
+.Contenido-BannerNosotros {
+    z-index: 2;
+    position: relative;
+    max-width: 800px;
+    padding: 2rem;
+}
+.Contenido-BannerNosotros h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3rem;
+    color: #A3FF12;
+    margin-bottom: 1rem;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.4);
+    transition: text-shadow 0.3s ease;
+}
+.Contenido-BannerNosotros h1:hover {
+    text-shadow: 0 4px 12px rgba(255, 255, 255, 0.6);
+}
+.Contenido-BannerNosotros p {
+    font-size: 1.2rem;
+    line-height: 1.7;
+    background: rgba(255,255,255,0.06);
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.15);
+    backdrop-filter: blur(6px);
+    padding: 1.5rem;
+    transition: all 1s ease;
+}
+.Contenido-BannerNosotros p:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 44px rgba(0,0,0,0.6);
+    border-color: black;
+}
+
+
+/* #endregion*/
+
+/* #region  Nosotros Historia */
+.historia {
+    padding: 4rem 2rem;
+}
+.contenedor-historia {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+}
+.texto-historia {
+    flex: 1 1 45%;
+}
+.Historia-Nosotros {
+    position: relative;
+    padding: 6rem 3rem;
+    background: linear-gradient(135deg, #1a1b2e 0%, #2a2b40 100%);
+    overflow: hidden;
+}
+.Contenedor-Historia {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+}
+.Texto-Historia {
+    flex: 1 1 45%;
+    z-index: 2;
+}
+.Texto-Historia h2 {
+    color: #A3FF12;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    font-family: 'Montserrat', sans-serif;
+}
+.texto-historia {
+    flex: 1 1 45%;
+}
+.Historia-Nosotros {
+    position: relative;
+    padding: 6rem 3rem;
+    background: linear-gradient(135deg, #1a1b2e 0%, #2a2b40 100%);
+    overflow: hidden;
+}
+.Contenedor-Historia {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+}
+.Texto-Historia {
+    flex: 1 1 45%;
+    z-index: 2;
+}
+.Texto-Historia h2 {
+    color: #A3FF12;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    font-family: 'Montserrat', sans-serif;
+}
+.Texto-Historia p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #E0E0E0;
+    margin-bottom: 1.5rem;
+    font-family: 'Poppins', sans-serif;
+}
+.Imagen-Historia {
+    flex: 1 1 50%;
+    max-width: 600px;
+    border-radius: 1rem;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    object-fit: cover;
+    opacity: 0.9;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+}
+.Imagen-Historia:hover {
+    transform: scale(1.03);
+    opacity: 1;
+}
+.Historia-Nosotros::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 20% 40%, rgba(163, 255, 18, 0.15), transparent 70%);
+    z-index: 1;
+}
+
+@media (max-width: 1024px) {
+    .Nosotros-Banner {
+        height: 75vh;
+        background-position: center center;
+    }
+
+    .Contenido-BannerNosotros {
+        max-width: 90%;
+        padding: 1.5rem;
+    }
+
+    .Contenido-BannerNosotros h1 {
+        font-size: 2.4rem;
+    }
+
+    .Contenido-BannerNosotros p {
+        font-size: 1.05rem;
+    }
+
+    .Historia-Nosotros {
+        padding: 5rem 2rem;
+    }
+
+    .Contenedor-Historia {
+        gap: 2rem;
+    }
+
+    .Texto-Historia h2 {
+        font-size: 2rem;
+    }
+
+    .Texto-Historia p {
+        font-size: 1rem;
+    }
+
+    .Imagen-Historia {
+        max-width: 500px;
+    }
+}
+
+@media (max-width: 768px) {
+    .Nosotros-Banner {
+        height: auto;
+        padding: 6rem 1.5rem;
+        text-align: center;
+        background-position: center;
+    }
+
+    .Contenido-BannerNosotros h1 {
+        font-size: 2rem;
+        line-height: 1.3;
+    }
+
+    .Contenido-BannerNosotros p {
+        font-size: 1rem;
+        padding: 1.2rem;
+        line-height: 1.6;
+    }
+
+    .Historia-Nosotros {
+        padding: 4rem 1.5rem;
+    }
+
+    .Contenedor-Historia {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .Texto-Historia, 
+    .Imagen-Historia {
+        flex: 1 1 100%;
+        max-width: 100%;
+    }
+
+    .Texto-Historia h2 {
+        font-size: 1.8rem;
+    }
+
+    .Texto-Historia p {
+        font-size: 0.95rem;
+        margin-bottom: 1.2rem;
+    }
+
+    .Imagen-Historia {
+        width: 100%;
+        height: auto;
+        box-shadow: 0 0 18px rgba(0, 0, 0, 0.4);
+    }
+}
+
+@media (max-width: 480px) {
+    .Nosotros-Banner {
+        height: auto;
+        padding: 5rem 1rem 4rem 1rem;
+    }
+
+    .Contenido-BannerNosotros h1 {
+        font-size: 1.7rem;
+    }
+
+    .Contenido-BannerNosotros p {
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+
+    .Historia-Nosotros {
+        padding: 3rem 1rem;
+    }
+
+    .Texto-Historia h2 {
+        font-size: 1.5rem;
+    }
+
+    .Texto-Historia p {
+        font-size: 0.9rem;
+        line-height: 1.6;
+    }
+
+    .Imagen-Historia {
+        border-radius: 10px;
+    }
+}
+
+/* #endregion */
+
+/* #region MisionVision */
+
+.Mision-Vision {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: 3rem;
+    flex-wrap: wrap;
+    padding: 6rem 2rem;
+    background: linear-gradient(180deg, #1b1c29, #10111a);
+    position: relative;
+    overflow: hidden;
+}
+
+.Mision-Vision::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at center, rgba(163, 255, 18, 0.05), transparent 70%);
+    z-index: 0;
+    animation: pulseBG 10s ease-in-out infinite alternate;
+}
+
+@keyframes pulseBG {
+    0% { transform: scale(1); opacity: 0.4; }
+    100% { transform: scale(1.2); opacity: 0.7; }
+}
+
+.CajaMV {
+    position: relative;
+    z-index: 1;
+    padding: 2.5rem 2rem;
+    border-radius: 18px;
+    color: #E0E0E0;
+    background: rgba(255, 255, 255, 0.06);
+    text-align: center;
+    width: 340px;
+    max-width: 90vw;
+    overflow: hidden;
+    transition: all 0.5s ease;
+    font-family: 'Montserrat', sans-serif;
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.4);
+}
+
+.CajaMV::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 18px;
+    border: 2px solid transparent;
+    background: linear-gradient(135deg, #A3FF12 0%, transparent 60%) border-box;
+    mask: 
+        linear-gradient(#fff 0 0) padding-box, 
+        linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    -webkit-mask-composite: xor;
+    transform: scaleX(0);
+    transform-origin: top right;
+    transition: transform 0.6s ease;
+    z-index: 2;
+}
+
+.CajaMV::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 18px;
+    background: radial-gradient(circle at top right, rgba(163,255,18,0.2) 0%, rgba(163,255,18,0.05) 100%);
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    z-index: 1;
+}
+
+.CajaMV:hover::before {
+    transform: scaleX(1);
+    border-color: #A3FF12;
+}
+
+.CajaMV:hover::after {
+    opacity: 1;
+}
+
+.CajaMV:hover {
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 0 20px rgba(163, 255, 18, 0.25);
+}
+
+.CajaMV h3 {
+    color: #A3FF12;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    letter-spacing: 0.5px;
+    font-weight: 700;
+    text-shadow: 0 0 6px rgba(163,255,18,0.3);
+}
+
+.CajaMV p {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: #EAEAEA;
+    letter-spacing: 0.2px;
+    text-align: justify;
+    padding: 0 0.4rem;
+}
+
+@media (max-width: 1024px) {
+    .Mision-Vision {
+        padding: 5rem 1.5rem;
+        gap: 2rem;
+    }
+
+    .CajaMV {
+        width: 320px;
+        padding: 2rem 1.5rem;
+    }
+
+    .CajaMV h3 {
+        font-size: 1.6rem;
+    }
+
+    .CajaMV p {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+}
+
+@media (max-width: 768px) {
+    .Mision-Vision {
+        flex-direction: column;
+        align-items: center;
+        padding: 4rem 1.5rem;
+    }
+
+    .CajaMV {
+        width: 100%;
+        max-width: 420px;
+        padding: 1.8rem 1.2rem;
+    }
+
+    .CajaMV h3 {
+        font-size: 1.5rem;
+    }
+
+    .CajaMV p {
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .Mision-Vision {
+        padding: 3rem 1rem;
+        gap: 1.5rem;
+    }
+
+    .CajaMV {
+        width: 100%;
+        padding: 1.5rem 1rem;
+        border-radius: 12px;
+    }
+
+    .CajaMV h3 {
+        font-size: 1.3rem;
+        margin-bottom: 0.7rem;
+    }
+
+    .CajaMV p {
+        font-size: 0.9rem;
+        line-height: 1.5;
+        text-align: center;
+    }
+
+    .CajaMV:hover {
+        transform: none;
+        box-shadow: 0 0 12px rgba(163, 255, 18, 0.15);
+    }
+}
+
+/* #endregion */
+
+
+/* #region Equipo */
+.Equipo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 4rem 1rem;
+    text-align: center;
+    background: linear-gradient(to bottom, #0b0b0b, #111);
+    color: #fff;
+}
+
+.overlay-negro {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    pointer-events: none;
+    z-index: 5;
+    background: linear-gradient(
+        to bottom, 
+        rgba(30,31,47,0.7) 0%,
+        rgba(30,31,47,0) 20%,
+        rgba(30,31,47,0) 80%,
+        rgba(30,31,47,0.7) 100%
+    );
+}
+
+.Equipo-Contenedor {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    margin: 2rem 0 0 0;
+}
+
+.Tarjeta-Equipo {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 2rem 1.5rem;
+    width: 280px;
+    text-align: center;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(6px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    color: #fff;
+}
+
+.Tarjeta-Equipo:hover {
+    transform: translateY(-10px) scale(1.03);
+    border-color: #A3FF12;
+    box-shadow: 0 0 20px rgba(163, 255, 18, 0.2);
+}
+
+.Tarjeta-Equipo img {
+    width: 110px;
+    height: 110px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid #A3FF12;
+    margin-bottom: 1rem;
+}
+
+.Tarjeta-Equipo h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.3rem;
+    color: #fff;
+    margin-bottom: 0.3rem;
+}
+
+.Tarjeta-Equipo .cargo {
+    font-size: 1rem;
+    color: #A3FF12;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.Tarjeta-Equipo .descripcion {
+    font-size: 0.95rem;
+    color: #ddd;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.redes {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.redes a {
+    color: #A3FF12;
+    font-size: 1.3rem;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.redes a:hover {
+    color: #fff;
+    transform: scale(1.2);
+}
+
+.Equipo h2, .Equipo-Title { 
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.5rem;
+    color: #A3FF12;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 0 12px rgba(163,255,18,0.18);
+}
+
+@media (max-width: 1024px) {
+    .Tarjeta-Equipo {
+        width: 45%;
+    }
+}
+
+@media (max-width: 768px) {
+    .Tarjeta-Equipo {
+        width: 80%;
+    }
+}
+
+@media (max-width: 600px) {
+    .Tarjeta-Equipo:nth-child(4) {
+        display: none;
+    }
+
+    .Tarjeta-Equipo {
+        width: 100%;
+    }
+}
+
+
+/* #endregion */
+    

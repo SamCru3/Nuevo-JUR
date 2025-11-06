@@ -1,0 +1,482 @@
+.Catalogo {
+    padding: 5rem 2rem;
+    color: #E0E0E0;
+    font-family: 'Poppins', sans-serif;
+}
+
+.EncabezadoCatalogo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 2.5rem;
+}
+
+.EncabezadoCatalogo h2 {
+    color: #A3FF12;
+    font-size: 2rem;
+    text-shadow: 0 0 10px #A3FF12;
+}
+
+.barra-busqueda {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 8px 15px;
+    border-radius: 30px;
+    border: 1px solid #00CFFF;
+    box-shadow: 0 0 10px rgba(0, 207, 255, 0.2);
+    transition: 0.3s ease;
+}
+
+.barra-busqueda:hover {
+    box-shadow: 0 0 15px #00CFFF;
+}
+
+.barra-busqueda input {
+    background: transparent;
+    border: none;
+    color: #A3FF12;
+    font-size: 0.95rem;
+    outline: none;
+    width: 200px;
+}
+
+.barra-busqueda input::placeholder {
+    color: #8affff77;
+}
+
+.barra-busqueda button {
+    background: #00CFFF;
+    border: none;
+    color: #fff;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.barra-busqueda button:hover {
+    background: #A3FF12;
+    color: #000;
+    transform: scale(1.1);
+}
+
+.Categorias {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 3rem;
+}
+
+.categoria {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid #00CFFF;
+    color: #A3FF12;
+    padding: 0.6rem 1.3rem;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+}
+
+.categoria:hover, .categoria.active {
+    background: linear-gradient(90deg, #00CFFF, #A3FF12);
+    color: #000;
+    box-shadow: 0 0 15px #00CFFF;
+    transform: translateY(-3px);
+}
+
+.ProductosMas {
+    width: 50%;
+}
+
+@media (max-width: 992px) {
+    .ProductosMas {
+        width: 80%;
+    }
+}
+
+@media (max-width: 600px) {
+    .ProductosMas {
+        width: 95%;
+    }
+}
+
+.MiniCatalogo {
+    padding: 2rem 1rem;
+    background-color: #1e1f2f;
+    color: #E0E0E0;
+    text-align: center;
+    font-family: 'Lato', sans-serif;
+}
+
+.MiniCatalogo .titulo {
+    margin-bottom: 2rem;
+    position: relative;
+    display: inline-block;
+}
+
+.Titulo-dot {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 2rem;
+    margin: 0;
+    position: relative;
+}
+
+.linea-titulo {
+    width: 80%;
+    height: 4px;
+    background-color: #A3FF12;
+    margin: 8px auto 0 auto;
+    border-radius: 2px;
+}
+
+.Contenedor-Catalogo {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(280px, 1fr));
+    justify-items: center;
+    gap: 1.8rem;
+    padding: 0 1rem;
+}
+
+.Catalogo-dots {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.Catalogo-dot {
+    background-color: rgba(255,255,255,0.2);
+    color: #fff;
+    border: none;
+    text-decoration: none;
+    border-radius: 25px;
+    padding: 8px 18px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 14px;
+}
+
+.Catalogo-dot:hover {
+    background-color: #A3FF12;
+    color: #121212;
+}
+
+.Catalogo-dot.active {
+    background-color: #A3FF12;
+    color: #121212;
+}
+
+.producto {
+    width: 300px;
+    background: linear-gradient(145deg, #272938, #1e1f2f);
+    color: #E0E0E0;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.35);
+    overflow: hidden;
+    font-family: 'Lato', sans-serif;
+    margin: 0.8rem;
+    transition: all 0.3s;
+    position: relative;
+}
+.producto:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.5);
+    background: linear-gradient(145deg, #2e3048, #262738);
+}
+.producto.oculto, .Titulo-dot.oculto {
+    opacity: 0;
+    transform: translateY(10px) scale(0.98);
+    pointer-events: none;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.producto, .Titulo-dot {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.Imagen {
+    width: 100%;
+    height: 220px;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid #ddd;
+}
+.Imagen::after {
+    content: "";
+    position: absolute;
+    top:0; left:0; width:100%; height:100%;
+    background: rgba(0,0,0,0.2);
+}
+.Imagen img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s;
+}
+.producto:hover .Imagen img {
+    transform: scale(1.05);
+}
+.overlay-catalogo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(0,0,0,0.2), rgba(0,0,0,0));
+    pointer-events: none;
+}
+.Promocion {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    background-color: #A3FF12;
+    color: #121212;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    padding: 4px 10px;
+    border-radius: 6px;
+    z-index: 2;
+    text-transform: uppercase;
+}
+.Nuevo {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    background-color: #FF9100;
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    padding: 4px 10px;
+    border-radius: 6px;
+    z-index: 2;
+    text-transform: uppercase;
+}
+.VerMas {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    background-color: #00CFFF;
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s;
+    z-index: 2;
+    text-decoration: none;
+}
+.VerMas:hover {
+    background-color: #007BFF;
+    transform: scale(1.05);
+}
+.producto h2 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    color: #A3FF12;
+    margin: 10px 12px 4px 12px;
+}
+.producto h3 {
+    font-family: 'Lato', sans-serif;
+    color: #FFFFFF;
+    font-weight: 400;
+    font-size: 14px;
+    margin: 0 12px 10px 12px;
+}
+.Precio {
+    margin: 0 12px 10px 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Poppins', sans-serif;
+}
+.Precio .Descuento p {
+    color: #A3FF12;
+    font-weight: 700;
+    font-size: 16px;
+}
+.Precio > p {
+    color: #777;
+    text-decoration: line-through;
+    font-size: 14px;
+}
+.producto button {
+    margin: 0 12px 12px 12px;
+    width: calc(100% - 24px);
+    padding: 8px 0;
+    background-color: #00CFFF;
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 14px;
+}
+.producto button:hover {
+    background-color: #007BFF;
+    transform: scale(1.03);
+}
+
+@media (max-width: 992px) {
+
+    .EncabezadoCatalogo {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 1rem;
+    }
+
+    .barra-busqueda {
+        width: 90%;
+        justify-content: center;
+    }
+
+    .barra-busqueda input {
+        width: 100%;
+        font-size: 1rem;
+        text-align: center;
+    }
+
+    .sugerencias-lista {
+        max-height: 280px;
+        padding: 8px;
+    }
+
+    .sugerencia-info img {
+        width: 60px;
+        height: 60px;
+    }
+
+    .sugerencia-info .nombre {
+        font-size: 0.95rem;
+    }
+
+    .sugerencia-info .precio {
+        font-size: 0.85rem;
+    }
+
+    .Contenedor-Catalogo {
+        grid-template-columns: repeat(2, minmax(220px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .producto {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .Imagen {
+        height: 200px;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .EncabezadoCatalogo h2 {
+        font-size: 1.6rem;
+    }
+
+    .barra-busqueda {
+        width: 100%;
+        padding: 6px 12px;
+    }
+
+    .barra-busqueda input {
+        font-size: 0.9rem;
+    }
+
+    .barra-busqueda button {
+        width: 32px;
+        height: 32px;
+        font-size: 1rem;
+    }
+
+    .sugerencias-lista {
+        max-height: 260px;
+        border-radius: 10px;
+        padding: 6px;
+    }
+
+    .sugerencia-item {
+        padding: 10px;
+        gap: 10px;
+    }
+
+    .sugerencia-info img {
+        width: 55px;
+        height: 55px;
+    }
+
+    .sugerencia-info .nombre {
+        font-size: 0.9rem;
+    }
+
+    .sugerencia-info .precio {
+        font-size: 0.8rem;
+    }
+
+    .Contenedor-Catalogo {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .producto {
+        width: 100%;
+        max-width: 95%;
+        margin: 0 auto;
+    }
+
+    .Imagen {
+        height: 180px;
+    }
+
+    .producto h2 {
+        font-size: 15px;
+    }
+
+    .producto h3 {
+        font-size: 13px;
+    }
+
+    .Precio .Descuento p {
+        font-size: 15px;
+    }
+
+    .producto button {
+        font-size: 13px;
+        padding: 7px 0;
+    }
+}
+
+@media (max-width: 400px) {
+    .sugerencia-info img {
+        width: 50px;
+        height: 50px;
+    }
+
+    .sugerencia-info .nombre {
+        font-size: 0.85rem;
+    }
+
+    .producto {
+        max-width: 90%;
+    }
+}

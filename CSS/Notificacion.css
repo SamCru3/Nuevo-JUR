@@ -1,0 +1,113 @@
+
+.NotificacionCompra {
+    position: fixed;
+    padding: 2rem 1rem;
+    top: -70px;
+    width: 400px;
+    display: flex;
+    text-transform: uppercase;
+    height: 70px;
+    overflow: hidden;
+    border-radius: 15px;
+    border: 1px solid rgba(255,255,255,0.1);
+    backdrop-filter: blur(6px) saturate(120%);
+    left: 50%;
+    transform: translateX(-50%);
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    transition: 0.7s;
+    letter-spacing: 4px;
+    z-index: 9999999999;
+}
+.NotificacionCompra:hover {
+    background: #03e9f4;
+    color: #050801;
+    box-shadow: 0 0 5px #03e9f4, 0 0 25px #03e9f4, 0 0 50px #03e9f4, 0 0 200px #03e9f4;
+}
+.NotificacionCompra:nth-child(1){
+    filter: hue-rotate(270deg);
+}
+.NotificacionCompra:nth-child(2){
+    filter: hue-rotate(110deg);
+}
+.NotificacionCompra span {
+    position: absolute;
+    display: block;
+}
+.NotificacionCompra span:nth-child(1){
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #03e9f4);
+    animation: animate11 2s linear infinite;
+}
+@keyframes animate11 {
+    0% {
+        left: -100%;
+    }
+    50%, 100% {
+        left: 100%;
+    }
+}
+.NotificacionCompra span:nth-child(2){
+    top: -100%;
+    right: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(180deg, transparent, #03e9f4);
+    animation: animate22 2s linear infinite;
+    animation-delay: 0.5s;
+}
+@keyframes animate22 {
+    0% {
+        top: -100%;
+    }
+    50%, 100% {
+        top: 100%;
+    }
+}
+.NotificacionCompra span:nth-child(3){
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(2700deg, transparent, #03e9f4);
+    animation: animate33 2s linear infinite;
+    animation-delay: 1s;
+}
+@keyframes animate33 {
+    0% {
+        right: -100%;
+    }
+    50%, 100% {
+        right: 100%;
+    }
+}
+.NotificacionCompra span:nth-child(4){
+    bottom: -100%;
+    left: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(360deg, transparent, #03e9f4);
+    animation: animate44 2s linear infinite;
+    animation-delay: 1.5s;
+}
+@keyframes animate44 {
+    0% {
+        bottom: -100%;
+    }
+    50%, 100% {
+        bottom: 100%;
+    }
+}
+.NotificacionCompra p {
+    font-weight: 600;
+    color: #E0E0E0;
+    text-align: center;
+    font-size: 1rem;
+}
+.NotificacionCompra.active {
+    top: 25px;
+}
