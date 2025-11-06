@@ -9,7 +9,7 @@ function CambiarEntrenamiento(deporte, boton) {
     const horarios = document.querySelector(".club-horarios table");
 
     if (deporte === "Futbol") {
-        img.src = "Img/Futbol.png";
+        img.src = "Img/futbol.png";
         h2.textContent = "Fútbol — Club Deportivo JUR";
         p.innerHTML = "En el Club Deportivo JUR, el fútbol es más que un deporte: es pasión, disciplina y trabajo en equipo. Formamos jugadores con técnica, estrategia y valores, preparados para brillar dentro y fuera de la cancha. <br>⚡ Entrena con nosotros y vive el verdadero espíritu del fútbol JUR.";
         horarios.innerHTML = `
@@ -64,3 +64,4 @@ function CambiarEntrenamiento(deporte, boton) {
         `;
     }
 }
+
