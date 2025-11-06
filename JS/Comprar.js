@@ -34,7 +34,8 @@ document.addEventListener("DOMContentLoaded", () => {
             const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
             if (carrito.length > 0) {
                 const listaProductos = carrito
-                    .map(p => `${p.nombre} (x${p.cantidad}) - ${p.precio}`).join("\n");
+                    .map(p => `${p.nombre} (x${p.cantidad}) - ${p.precio}`)
+                    .join("\n");
                 Comprita.dataset.productos = listaProductos;
             } else {
                 Comprita.dataset.productos = "Carrito vacío";
@@ -72,7 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
         try {
             const response = await fetch("https://formsubmit.co/ajax/clubdeportivojur@gmail.com", {
                 method: "POST",
-                body: data
+                body: data,
             });
 
             if (!response.ok) throw new Error("Error al enviar");
