@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Laberinto de Basura 2D - Versión Móvil</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #1d1d1d;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    h1 { margin-bottom: 10px; text-align: center; }
+
+    #game-view {
+      width: 90vw;
+      height: 60vh;
+      max-width: 500px;
+      max-height: 500px;
+      border: 3px solid #00b894;
+      overflow: hidden;
+      position: relative;
+      background: #2e2e2e;
+    }
+
+    #game-container {
+      position: absolute;
+      display: grid;
+      grid-template-columns: repeat(30, 50px);
+      grid-template-rows: repeat(30, 50px);
+      gap: 2px;
+    }
+
+    .cell { width: 50px; height: 50px; }
+    .wall { background: #636e72; }
+    .player { background: #0984e3; border-radius: 5px; }
+    .trash { background: #fdcb6e; border-radius: 50%; }
+    .exit { background: #00b894; border-radius: 6px; }
+
+    #controls { 
+      margin-top: 10px; 
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    #start-btn {
+      background: #00b894;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: opacity 0.4s ease, transform 0.3s ease;
+    }
+    #start-btn:hover { background: #019874; }
+
+    /* 🔹 Efecto para desaparecer */
+    #start-btn.hide {
+      opacity: 0;
+      transform: scale(0.8);
+      pointer-events: none;
+    }
+
+    #timer { margin-top: 10px; font-size: 18px; }
+    #message { margin-top: 10px; font-size: 20px; font-weight: bold; color: #ffeaa7; }
+
+    /* 🔹 Controles táctiles */
+    .mobile-controls {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin-top: 15px;
+    }
+
+    .btn {
+      width: 65px;
+      height: 65px;
+      background: #00b894;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      font-size: 28px;
+      cursor: pointer;
+      user-select: none;
+      transition: transform 0.1s;
+    }
+
+    .btn:active {
+      transform: scale(0.9);
+      background: #019874;
+    }
+
+    @media (max-width: 600px) {
+      .btn { width: 60px; height: 60px; font-size: 26px; }
+      .mobile-controls { gap: 10px; flex-wrap: nowrap; }
+    }
+
+    @media (max-width: 400px) {
+      .btn { width: 50px; height: 50px; font-size: 22px; }
+    }
+  </style>
+</head>
+<body>
+
+<h1>♻️ Laberinto de Basura 2D</h1>
+
+<div id="game-view">
+  <div id="game-container"></div>
+</div>
+
+<div id="controls">
+  <button id="start-btn">Iniciar Juego</button>
+  <div id="timer">Tiempo: 0s</div>
+  <div id="message"></div>
+
+  <div class="mobile-controls">
+    <button class="btn up">⬆️</button>
+    <button class="btn left">⬅️</button>
+    <button class="btn down">⬇️</button>
+    <button class="btn right">➡️</button>
+  </div>
+</div>
+
+<script>
+  const container = document.getElementById('game-container');
+  const gameView = document.getElementById('game-view');
+  const timerDisplay = document.getElementById('timer');
+  const message = document.getElementById('message');
+  const startBtn = document.getElementById('start-btn');
+
+  const map = [
+    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+    [1,2,0,0,0,0,1,3,0,0,0,1,0,3,0,1,0,0,0,1,0,3,0,0,0,0,0,1,3,1],
+    [1,0,1,1,1,0,1,0,0,1,0,1,1,1,0,1,1,0,0,1,0,1,1,1,1,1,0,1,0,1],
+    [1,0,0,0,0,0,0,0,1,1,0,0,3,0,0,1,0,0,0,1,0,0,0,3,0,1,0,1,0,1],
+    [1,0,1,1,1,1,1,0,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,3,1,0,1],
+    [1,0,0,0,0,1,0,0,0,1,0,1,0,0,0,1,0,1,0,0,0,1,0,0,0,1,0,0,0,1],
+    [1,1,1,1,0,1,0,1,0,1,0,0,0,1,0,0,0,1,3,1,0,1,0,1,0,1,0,1,0,1],
+    [1,0,0,0,0,0,0,1,0,1,1,1,0,1,0,1,0,1,0,1,0,0,0,1,0,0,0,1,0,1],
+    [1,0,1,1,1,1,0,1,0,0,0,1,0,1,0,1,0,0,0,1,1,1,0,1,1,1,0,1,0,1],
+    [1,3,0,0,0,0,0,1,0,1,0,0,0,1,0,1,1,1,0,1,0,0,0,1,0,1,3,1,0,1],
+    [1,0,1,1,1,1,0,0,0,1,0,1,0,0,0,1,0,0,3,1,0,1,0,0,0,1,0,1,0,1],
+    [1,0,0,0,3,0,0,1,0,1,0,1,0,1,1,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1],
+    [1,1,1,0,1,1,0,1,0,1,0,1,0,0,0,1,0,1,0,1,0,1,0,1,0,1,0,1,3,1],
+    [1,0,0,0,0,0,0,1,0,1,3,1,0,1,0,1,0,0,0,1,0,1,0,1,0,0,0,1,0,1],
+    [1,0,1,1,1,1,0,1,0,1,0,0,0,1,0,1,1,1,0,1,0,1,0,1,0,1,3,1,0,1],
+    [1,3,0,0,0,0,0,0,0,1,0,1,0,1,0,0,0,1,0,1,0,1,0,1,0,1,0,1,0,1],
+    [1,0,1,1,1,1,1,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,3,1,0,1,0,1,0,1],
+    [1,0,0,0,3,0,0,0,0,1,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,1,0,0,4,1],
+    [1,0,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+  ];
+
+  let playerPos = { x: 1, y: 1 };
+  let trashCount = 0;
+  let totalTrash = 0;
+  let gameStarted = false;
+  let time = 0;
+  let timerInterval;
+
+  function renderMap() {
+    container.innerHTML = '';
+    for (let y = 0; y < map.length; y++) {
+      for (let x = 0; x < map[y].length; x++) {
+        const cell = document.createElement('div');
+        cell.classList.add('cell');
+        if (map[y][x] === 1) cell.classList.add('wall');
+        if (map[y][x] === 2) cell.classList.add('player');
+        if (map[y][x] === 3) cell.classList.add('trash');
+        if (map[y][x] === 4) cell.classList.add('exit');
+        container.appendChild(cell);
+      }
+    }
+    updateCamera();
+  }
+
+  function updateCamera() {
+    const cellSize = 52;
+    const viewWidth = gameView.clientWidth;
+    const viewHeight = gameView.clientHeight;
+    const offsetX = playerPos.x * cellSize - viewWidth / 2 + cellSize / 2;
+    const offsetY = playerPos.y * cellSize - viewHeight / 2 + cellSize / 2;
+    container.style.left = `${-Math.max(0, Math.min(offsetX, map[0].length * cellSize - viewWidth))}px`;
+    container.style.top = `${-Math.max(0, Math.min(offsetY, map.length * cellSize - viewHeight))}px`;
+  }
+
+  function move(dx, dy) {
+    if (!gameStarted) return;
+    const newX = playerPos.x + dx;
+    const newY = playerPos.y + dy;
+    if (map[newY][newX] === 1) return;
+
+    if (map[newY][newX] === 3) {
+      trashCount++;
+      map[newY][newX] = 0;
+    }
+
+    if (map[newY][newX] === 4) {
+      if (trashCount === totalTrash) {
+        clearInterval(timerInterval);
+        message.textContent = `¡Ganaste! ♻️ Tiempo: ${time}s`;
+        gameStarted = false;
+      } else {
+        message.textContent = "Recolecta toda la basura antes de salir.";
+        return;
+      }
+    }
+
+    map[playerPos.y][playerPos.x] = 0;
+    playerPos = { x: newX, y: newY };
+    map[newY][newX] = 2;
+    renderMap();
+  }
+
+  startBtn.addEventListener('click', () => {
+    startBtn.classList.add('hide'); // 🔹 Desaparece suavemente
+    setTimeout(() => startBtn.style.display = 'none', 400);
+
+    trashCount = 0;
+    message.textContent = '';
+    time = 0;
+    gameStarted = true;
+    totalTrash = map.flat().filter(c => c === 3).length;
+    playerPos = { x: 1, y: 1 };
+    renderMap();
+
+    clearInterval(timerInterval);
+    timerInterval = setInterval(() => {
+      time++;
+      timerDisplay.textContent = `Tiempo: ${time}s`;
+    }, 1000);
+  });
+
+  // 🎮 Controles por teclado
+  document.addEventListener('keydown', e => {
+    if (!gameStarted) return;
+    if (e.key === 'ArrowUp') move(0, -1);
+    if (e.key === 'ArrowDown') move(0, 1);
+    if (e.key === 'ArrowLeft') move(-1, 0);
+    if (e.key === 'ArrowRight') move(1, 0);
+  });
+
+  // 🎮 Controles táctiles y clic (ambos)
+  document.querySelector('.up').addEventListener('touchstart', () => move(0, -1));
+  document.querySelector('.down').addEventListener('touchstart', () => move(0, 1));
+  document.querySelector('.left').addEventListener('touchstart', () => move(-1, 0));
+  document.querySelector('.right').addEventListener('touchstart', () => move(1, 0));
+
+  // 🖱️ Controles con clic (para PC)
+  document.querySelector('.up').addEventListener('mousedown', () => move(0, -1));
+  document.querySelector('.down').addEventListener('mousedown', () => move(0, 1));
+  document.querySelector('.left').addEventListener('mousedown', () => move(-1, 0));
+  document.querySelector('.right').addEventListener('mousedown', () => move(1, 0));
+
+  renderMap();
+</script>
+
+</body>
+</html>
